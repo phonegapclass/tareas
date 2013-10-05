@@ -88,29 +88,19 @@
 					function submitForm(){
 						$el = $('#add form');
 						if ($('#todo', $el).val().length > 1){
-							var tarea = new Tarea();
-							tarea.texto = $el.val();
-							tarea.estado = 0;
-							agregarIncompletas(tarea);
+							agregarIncompletas($el.val(),0);
 						}
 						return false;
 					}
 					$('#add form').submit(submitForm);
 					$('#add .whiteButton').click(submitForm);
-					/*$('.complete li, .incomplete li').bind('swipe', function(){
-					   $(this).toggleClass('editingmode');
-					});*/
 					$('input[type="checkbox"]').live('change', function(){//Cambio de estado
 						var $el = $(this);
-						var tarea = new Tarea();
-						tarea.id = $el.parent().attr('relId');
-						tarea.texto = $el.parent().find('span').text();
-						tarea.estado = 0;
 						if ($el.attr('checked')){//Completados
-							cambiarCompletas(tarea);
+							cambiarCompletas($el.parent().attr('relId'));
 							$el.parent().prependTo('.complete');
 						} else {//Incompletos
-							cambiarIncompletas(tarea);
+							cambiarIncompletas($el.parent().attr('relId'));
 							$el.parent().appendTo('.incomplete');
 						}
 					});

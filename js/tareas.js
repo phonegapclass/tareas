@@ -1,10 +1,3 @@
-//Clase Tarea
-function Tarea(){
-	this.id;
-	this.texto;
-	this.estado;	
-}
-
 //Acciones de tareas
 function accesoBD(){//Acceso y Creación de la Base de Datos
 	var bd = window.openDatabase("tareasBD","1.0","Tareas BD",200000);
@@ -21,9 +14,9 @@ function crearTabla(){
 	});
 }
 
-function agregarIncompletas(t){
+function agregarIncompletas(texto,estado){
 	accesoBD().transaction(function(tx){//Transacción
-		tx.executeSql('INSERT INTO tareas (tarea,estado) VALUES ("'+t.texto+'","'+t.estado+'")');
+		tx.executeSql('INSERT INTO tareas (tarea,estado) VALUES ("'+texto+'","'+estado+'")');
 	},function(err){//Error
 		navigator.notification.alert("Error: "+err.code,null,"Error agregando Tarea","Aceptar");
 	},function(){//Satisfactoria
@@ -58,9 +51,9 @@ function leerTareas(){
 	});
 }
 
-function cambiarCompletas(t){
+function cambiarCompletas(tId){
 	accesoBD().transaction(function(tx){
-		tx.executeSql('UPDATE tareas SET estado=1 WHERE tId='+t.id);
+		tx.executeSql('UPDATE tareas SET estado=1 WHERE tId='+tId);
 	},function(err){
 		navigator.notification.alert("Error: "+err.code,null,"Error al Completar","Aceptar");
 	},function(){
@@ -68,9 +61,9 @@ function cambiarCompletas(t){
 	});
 }
 
-function cambiarIncompletas(t){
+function cambiarIncompletas(tId){
 	accesoBD().transaction(function(tx){
-		tx.executeSql('UPDATE tareas SET estado=0 WHERE tId='+t.id);
+		tx.executeSql('UPDATE tareas SET estado=0 WHERE tId='+tId);
 	},function(err){
 		navigator.notification.alert("Error: "+err.code,null,"Error al Regresar Estado","Aceptar");
 	},function(){
