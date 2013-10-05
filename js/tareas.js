@@ -7,7 +7,7 @@ function Tarea(){
 
 //Acciones de tareas
 function accesoBD(){//Acceso y Creación de la Base de Datos
-	var bd = window.openDatabase("tareasBD",1.0,"Tareas BD",200000);
+	var bd = window.openDatabase("tareasBD","1.0","Tareas BD",200000);
 	return bd;
 }
 
