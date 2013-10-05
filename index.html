@@ -94,8 +94,8 @@
 						}
 						return false;
 					}
-					$('#add form').submit(submitForm);
-					$('#add .whiteButton').click(submitForm);
+					//$('#add form').submit(submitForm);
+					$('#add .whiteButton').click(function(){alert();});
 					$('input[type="checkbox"]').live('change', function(){//Cambio de estado
 						var $el = $(this);
 						if ($el.attr('checked')){//Completados
