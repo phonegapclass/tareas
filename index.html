@@ -86,8 +86,10 @@
 				document.addEventListener("deviceready",function(){
 					crearTabla();//Crear Tabla
 					function submitForm(){
+						alert('entra');
 						$el = $('#add form');
 						if ($('#todo', $el).val().length > 1){
+							alert();
 							agregarIncompletas($el.val(),0);
 						}
 						return false;
